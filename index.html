@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>خروجی تحلیل اپیزود ۲۵ — خداحافظ آفریقا | شنیدار</title>
+<meta name="description" content="نمونه خروجی شنیدار برای یک اپیزود پادکست: متن دقیقِ همگام با صوت، فصل‌بندی خودکار و اطلاعات Dynamic Ad Insertion.">
+<meta name="theme-color" content="#0F766E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   شنیدار — نمایش خروجی تحلیل اپیزود پادکست
+   ============================================================ */
+:root{
+  --bg:#FFFFFF; --soft:#F7FAFA; --soft2:#EFF5F4;
+  --line:rgba(15,23,42,.10); --line-2:rgba(15,23,42,.18);
+  --text:#0E1729; --muted:#4E5A75; --faint:#64708C;
+  --brand:#0F766E; --brand-2:#0B5C56; --brand-3:#047857; --brand-deep:#064E3B;
+  --tint:#E5F3F1;
+  --amber:#B45309; --amber-bg:#FEF6E7;
+  --green:#16A34A; --rose:#E11D48;
+  --r:16px; --r-lg:22px; --r-xl:28px;
+  --sh:0 1px 2px rgba(16,24,40,.04), 0 10px 30px -22px rgba(16,24,40,.4);
+  --sh-lg:0 30px 60px -34px rgba(15,118,110,.5);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --font:"Vazirmatn","IRANSansX","Shabnam",Tahoma,"Segoe UI",sans-serif;
+  --top:60px;
+  --plh:168px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:calc(var(--top) + 70px);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.9;overflow-x:hidden;-webkit-font-smoothing:antialiased;padding-bottom:var(--plh)}
+h1,h2,h3,h4,p,ul,ol{margin:0} ul,ol{padding:0;list-style:none}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font-family:inherit}
+::selection{background:rgba(15,118,110,.2)}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:8px}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:#EEF4F3}
+::-webkit-scrollbar-thumb{background:var(--brand);border-radius:99px;border:3px solid #EEF4F3}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+
+/* ---------- نوار بالا ---------- */
+.topbar{position:sticky;top:0;z-index:100;height:var(--top);display:flex;align-items:center;
+  background:rgba(255,255,255,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;flex-shrink:0}
+.logo-mark{width:32px;height:32px;border-radius:10px;background:var(--brand);display:grid;place-items:center;flex-shrink:0}
+.logo-mark svg{width:18px;height:18px}
+.tb-title{font-size:13px;color:var(--muted);font-weight:600;margin-inline-start:auto;min-width:0;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ---------- سربرگ ---------- */
+.head-sec{padding:clamp(26px,5vw,44px) 0 8px}
+.crumb{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--faint);margin-bottom:14px;flex-wrap:wrap}
+.crumb b{color:var(--brand-2);font-weight:700}
+h1.ep-t{font-size:clamp(23px,4.4vw,34px);font-weight:900;line-height:1.42;letter-spacing:-.02em}
+.ep-sub{color:var(--muted);font-size:14.5px;font-weight:300;margin-top:10px;line-height:2}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.chip{font-size:12px;font-weight:600;padding:5px 12px;border-radius:99px;background:var(--soft2);color:var(--muted);border:1px solid var(--line)}
+.chip.acc{background:var(--tint);color:var(--brand-2);border-color:rgba(15,118,110,.2)}
+.chip.amb{background:var(--amber-bg);color:var(--amber);border-color:rgba(180,83,9,.18)}
+
+/* ---------- پخش‌کننده چسبانِ پایین (سبک اسپاتیفای) ---------- */
+.player{position:fixed;inset-inline:0;bottom:0;z-index:90;
+  background:rgba(255,255,255,.95);backdrop-filter:saturate(1.5) blur(18px);-webkit-backdrop-filter:saturate(1.5) blur(18px);
+  border-top:1px solid var(--line);box-shadow:0 -22px 48px -36px rgba(16,24,40,.6)}
+.pl-inner{width:min(1120px,100% - 32px);margin-inline:auto;
+  padding:9px 0 calc(9px + env(safe-area-inset-bottom,0px))}
+.pl-row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:14px}
+
+.pl-id{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:12px}
+.pl-txt{min-width:0;flex:1}.pl-txt{min-width:0;flex:1}
+.pl-txt h2{font-size:14px;font-weight:800;line-height:1.6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pl-txt p{font-size:11.5px;color:var(--faint);font-weight:300;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+
+.pl-ctrls{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.ctrl-btn{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:var(--brand-2);
+  background:transparent;border:1px solid transparent;transition:.22s var(--ease)}
+.ctrl-btn:hover{background:var(--tint)}
+.ctrl-btn:active{transform:scale(.9)}
+.ctrl-btn svg{width:18px;height:18px}
+.play-btn{width:50px;height:50px;border-radius:50%;background:var(--brand);color:#fff;border:0;display:grid;place-items:center;
+  box-shadow:0 12px 24px -13px rgba(15,118,110,.95);transition:.22s var(--ease)}
+.play-btn:hover{background:var(--brand-2);transform:translateY(-1px)}
+.play-btn:active{transform:scale(.94)}
+.play-btn svg{width:20px;height:20px}
+
+.pl-extra{display:flex;align-items:center;gap:12px;justify-content:flex-end;min-width:0}
+.spd{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);white-space:nowrap}
+.spd select{font-family:var(--font);font-size:12.5px;font-weight:600;padding:6px 9px;border-radius:9px;
+  border:1px solid var(--line-2);background:#fff;color:var(--text);cursor:pointer;min-height:36px}
+.spd select option{font-family:var(--font);font-size:13px}
+.tgl{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);cursor:pointer;min-height:36px;white-space:nowrap}
+.tgl input{appearance:none;width:42px;height:24px;border-radius:99px;background:rgba(15,23,42,.2);position:relative;cursor:pointer;transition:.25s;flex-shrink:0}
+.tgl input::after{content:"";position:absolute;top:3px;right:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.25s var(--ease)}
+.tgl input:checked{background:var(--brand)}
+.tgl input:checked::after{right:21px}
+
+.pl-bar{display:flex;align-items:center;gap:9px;margin-top:7px}
+#wave{flex:1;min-width:0;width:100%;height:44px;display:block;cursor:pointer}
+.pl-tm{font-size:12px;font-weight:800;font-variant-numeric:tabular-nums;direction:ltr;color:var(--text);flex-shrink:0;min-width:40px}
+.pl-tm.dim{color:var(--faint);font-weight:600}
+.pl-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:5px;font-size:10.5px;color:var(--faint)}
+.pl-legend i{display:inline-block;width:12px;height:8px;border-radius:3px;vertical-align:middle;margin-left:5px}
+.lg-play{background:var(--brand)} .lg-rest{background:rgba(15,23,42,.16)}
+.lg-ch{background:var(--brand-deep);width:3px;height:12px} .lg-dai{background:var(--amber)}
+
+.notice{margin:8px 0 0;padding:9px 13px;border-radius:11px;font-size:12px;line-height:1.85;
+  background:var(--amber-bg);border:1px solid rgba(180,83,9,.22);color:var(--amber);display:none}
+.notice.show{display:block}
+
+/* ---------- تب‌ها ---------- */
+.tabs-wrap{position:relative;display:inline-flex;max-width:100%;margin:40px 0 18px}
+.tabs{display:inline-flex;gap:4px;padding:4px;border-radius:14px;
+  background:var(--soft2);border:1px solid var(--line)}
+.dai-hint{position:absolute;top:-33px;left:4px;display:flex;align-items:center;gap:5px;
+  color:var(--brand-2);pointer-events:none;white-space:nowrap;
+  transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.dai-hint b{font-size:10.5px;font-weight:700;letter-spacing:-.01em;opacity:.85}
+.dai-hint svg{width:30px;height:22px;flex-shrink:0;opacity:.55;animation:hintBob 3.2s ease-in-out infinite}
+@keyframes hintBob{0%,100%{transform:translateY(0)}50%{transform:translateY(2px)}}
+.dai-hint.hide{opacity:0;transform:translateY(-8px)}
+@media(prefers-reduced-motion:reduce){ .dai-hint svg{animation:none} }
+.tab{font-size:14px;font-weight:700;color:var(--muted);padding:11px 20px;border-radius:11px;transition:.22s var(--ease);
+  min-height:46px;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.tab:hover{color:var(--text)}
+.tab.on{color:#fff;background:var(--brand);box-shadow:0 12px 22px -14px rgba(15,118,110,.95)}
+.tab svg{width:16px;height:16px}
+.tab .cnt{font-size:10.5px;font-weight:800;padding:1px 8px;border-radius:99px;background:var(--tint);color:var(--brand-2)}
+.tab.on .cnt{background:rgba(255,255,255,.24);color:#fff}
+
+/* ---------- سربرگِ بخش (بدون باکس) ---------- */
+.sec-h{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;
+  margin:0 0 18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.sec-h-t{flex:1 1 260px;min-width:0}
+.sec-h h2{font-size:clamp(17px,2.6vw,21px);font-weight:900;line-height:1.5;letter-spacing:-.01em}
+.sec-h .sub{display:block;font-size:12.8px;color:var(--faint);font-weight:300;line-height:1.9;margin-top:3px}
+.sec-h .search{margin-inline-start:auto}
+
+.search{position:relative;flex:1;min-width:180px;max-width:280px}
+.search input{width:100%;font-family:var(--font);font-size:14px;font-weight:400;padding:9px 38px 9px 14px;
+  border-radius:11px;border:1px solid var(--line-2);background:var(--soft)}
+.search input::placeholder{font-family:var(--font);color:var(--faint);opacity:1}
+.search input:focus{outline:none;border-color:var(--brand);background:#fff;box-shadow:0 0 0 3px rgba(15,118,110,.1)}
+.search svg{position:absolute;top:50%;right:12px;transform:translateY(-50%);width:15px;height:15px;color:var(--faint);pointer-events:none}
+
+/* ---------- ترنسکریپت ---------- */
+.script{padding:0}
+.script::-webkit-scrollbar{width:8px}
+.seg{display:grid;grid-template-columns:56px minmax(0,1fr);gap:4px 14px;align-items:start;
+  padding:9px 12px;border-radius:12px;cursor:pointer;
+  transition:background-color .55s ease, box-shadow .55s ease, opacity .55s ease}
+.seg:hover{background:var(--soft)}
+.seg.on{background:var(--tint);box-shadow:inset -3px 0 0 var(--brand), 0 2px 14px -10px rgba(15,118,110,.55)}
+.seg.past{opacity:.55}
+/* افکتِ بسیار ملایم هنگامِ فعال‌شدنِ هر جمله */
+@keyframes segIn{
+  from{opacity:.55;transform:translateY(3px)}
+  to  {opacity:1;  transform:translateY(0)}
+}
+.seg.enter>time,.seg.enter>.seg-p{animation:segIn .85s cubic-bezier(.4,0,.2,1) both}
+.seg.enter>.seg-p{animation-delay:.05s}
+@media(prefers-reduced-motion:reduce){
+  .seg.enter>time,.seg.enter>.seg-p{animation:none}
+}
+.seg>time{grid-column:1;grid-row:1;font-size:12.5px;font-weight:800;color:var(--brand-2);
+  font-variant-numeric:tabular-nums;direction:ltr;padding-top:6px;line-height:1.6}
+.seg.on>time{color:var(--brand-2)}
+.seg>.seg-p{grid-column:2;grid-row:1;font-size:15px;line-height:2.05;color:#2C3648;font-weight:400}
+.seg.on>.seg-p{color:var(--text)}
+.seg>.seg-mark{grid-column:2;grid-row:2;justify-self:start;margin-top:2px}
+.seg-p mark{background:rgba(180,83,9,.24);color:inherit;border-radius:4px;padding:0 3px}
+.seg.cue>time{color:var(--faint)}
+.seg.cue>.seg-p{font-size:13px;color:var(--faint);font-style:italic;letter-spacing:.02em}
+.seg-mark{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;padding:2px 9px;border-radius:99px;
+  background:var(--amber-bg);border:1px solid rgba(180,83,9,.25);color:var(--amber)}
+.ch-div{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  margin:30px 0 14px;padding:14px 0 10px;border-top:2px solid var(--brand);cursor:pointer;transition:.25s var(--ease)}
+.ch-div:hover .ch-dtitle{color:var(--brand-2)}
+.ch-div.on .ch-dtitle{color:var(--brand-2)}
+.ch-dt{font-size:12.5px;font-weight:800;color:#fff;background:var(--brand);padding:2px 9px;border-radius:8px;
+  font-variant-numeric:tabular-nums;direction:ltr;flex-shrink:0}
+.ch-dtitle{font-size:clamp(15px,2.4vw,17.5px);font-weight:900;flex-shrink:0;transition:.25s}
+.ch-dsum{font-size:13px;color:var(--muted);font-weight:300;line-height:1.9;flex:1 1 220px;min-width:0}
+.empty{padding:30px;text-align:center;color:var(--faint);font-size:13.5px}
+.empty{padding:30px;text-align:center;color:var(--faint);font-size:13.5px}
+.empty{padding:30px;text-align:center;color:var(--faint);font-size:13.5px}
+
+/* ---------- DAI ---------- */
+.timeline{position:relative;height:40px;border-radius:12px;background:var(--soft2);overflow:hidden;
+  margin-bottom:22px;border:1px solid var(--line)}
+.tl-bar{position:absolute;top:0;bottom:0;cursor:pointer;transition:.2s;
+  background:repeating-linear-gradient(45deg,rgba(180,83,9,.32) 0 6px,rgba(180,83,9,.15) 6px 12px);
+  border-left:2px solid var(--amber);border-right:2px solid var(--amber)}
+.tl-bar:hover{background:repeating-linear-gradient(45deg,rgba(180,83,9,.55) 0 6px,rgba(180,83,9,.32) 6px 12px)}
+.tl-bar b{position:absolute;top:50%;right:5px;transform:translateY(-50%);font-size:10.5px;font-weight:800;
+  color:var(--amber);white-space:nowrap}
+.tl-head{position:absolute;top:0;bottom:0;width:2px;background:var(--brand-2);z-index:3}
+.tl-lbl{position:absolute;bottom:1px;right:6px;font-size:9.5px;color:var(--faint)}
+
+.markers{background:transparent;border:0;box-shadow:none}
+.mk{position:relative;padding:22px 18px 22px 0;border-bottom:1px solid var(--line);transition:.3s var(--ease)}
+.mk:last-child{border-bottom:0}
+.mk::before{content:"";position:absolute;top:16px;bottom:16px;right:0;width:3px;border-radius:99px;
+  background:var(--brand);opacity:.22;transition:.3s}
+.mk:hover{background:var(--soft)}
+.mk.on::before{opacity:1}
+.mk.on{background:linear-gradient(270deg,rgba(229,243,241,.9),rgba(229,243,241,0) 65%)}
+.mk-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:9px}
+.mk-num{width:26px;height:26px;border-radius:9px;background:var(--brand);color:#fff;font-size:12.5px;
+  font-weight:900;display:grid;place-items:center;flex-shrink:0}
+.mk-title{font-size:15.5px;font-weight:800}
+.mk-type{font-size:10.5px;font-weight:800;letter-spacing:.05em;padding:3px 10px;border-radius:99px;
+  background:var(--tint);color:var(--brand-2);border:1px solid rgba(15,118,110,.22)}
+.mk-type.post{background:var(--amber-bg);color:var(--amber);border-color:rgba(180,83,9,.22)}
+.mk-t{margin-inline-start:auto;font-size:13.5px;font-weight:800;color:var(--brand-2);
+  font-variant-numeric:tabular-nums;direction:ltr;white-space:nowrap}
+.mk-why{font-size:13.8px;line-height:2.1;color:#3A465C;font-weight:300}
+.mk-foot{display:flex;align-items:center;gap:12px;margin-top:13px;flex-wrap:wrap}
+.safe{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;color:var(--green)}
+.safe svg{width:12px;height:12px}
+.mk-act{display:flex;gap:8px;margin-inline-start:auto;flex-wrap:wrap}
+.mini{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:11px;
+  border:1px solid var(--line-2);background:#fff;color:var(--muted);min-height:40px;transition:.25s}
+.mini:hover{border-color:var(--brand);color:var(--brand-2);background:var(--soft)}
+.mini svg{width:14px;height:14px}
+
+footnote,.note{display:block;font-size:12.5px;color:var(--faint);line-height:1.95;margin-top:12px}
+.note b{color:var(--muted)}
+footer{margin-top:40px;padding:26px 0 34px;border-top:1px solid var(--line);color:var(--faint);font-size:12.5px;text-align:center}
+
+/* ---------- ریسپانسیو ---------- */
+@media(max-width:760px){
+  .wrap{width:calc(100% - 24px)}
+
+  /* سربرگ */
+  .head-sec{padding:18px 0 0}
+  .crumb{font-size:12px;margin-bottom:10px;gap:5px}
+  h1.ep-t{font-size:clamp(21px,5.8vw,27px);line-height:1.45}
+  .ep-sub{font-size:13.5px;line-height:2;margin-top:8px}
+
+  /* تب‌ها */
+  .tabs-wrap{display:block;margin:44px 0 14px}
+  .tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:0;width:100%;overflow:visible}
+  .tab{justify-content:center;text-align:center;white-space:normal;line-height:1.55;
+    font-size:13px;padding:10px 7px;min-height:54px}
+  .tab .cnt{font-size:11px;padding:2px 7px}
+  .dai-hint{top:-34px;left:2px}
+  .dai-hint b{font-size:10.5px}
+  .tab .cnt{font-size:11.5px;padding:2px 8px}
+
+  /* سربرگِ بخش و جستجو */
+  .sec-h{flex-direction:column;align-items:stretch;gap:10px;margin-bottom:14px;padding-bottom:12px}
+  .sec-h-t{flex:1 1 auto}
+  .sec-h h2{font-size:17px}
+  .sec-h .sub{font-size:12px;margin-top:2px}
+  .sec-h .search{margin-inline-start:0;width:100%}
+  .search{max-width:none;width:100%}
+  .search input{min-height:46px;font-size:16px;padding-right:40px}  /* ۱۶px: جلوگیری از زومِ خودکارِ iOS */
+  .search svg{width:17px;height:17px}
+
+  /* متن: زمان در کنارِ متن، استفاده از تمام عرض */
+  .script{padding:0}
+  .seg{grid-template-columns:46px minmax(0,1fr);gap:2px 10px;padding:8px;border-radius:11px}
+  .seg>time{font-size:11.5px;padding-top:7px}
+  .seg>.seg-p{font-size:15px;line-height:2.1}
+  .seg.cue>.seg-p{font-size:12.5px}
+
+  /* سربرگِ فصل */
+  .ch-div{margin:26px 0 12px;padding:12px 0 8px;gap:8px}
+  .ch-dt{font-size:11.5px;padding:2px 8px}
+  .ch-dtitle{font-size:15.5px}
+  .ch-dsum{font-size:12.5px;line-height:1.95;flex:1 1 100%}
+
+  /* DAI */
+  .timeline{height:36px;margin-bottom:18px}
+  .mk{padding:18px 14px 18px 0}
+  .mk-title{font-size:15px}
+  .mk-t{margin-inline-start:0;width:100%;order:6;font-size:13px}
+  .mk-why{font-size:14px;line-height:2.1}
+  .mk-foot{gap:10px}
+  .mk-act{width:100%;margin-inline-start:0;gap:8px}
+  .mk-act .mini{flex:1;justify-content:center;min-height:46px}
+  .mini{min-height:46px}
+
+  /* پخش‌کننده‌ی چسبان */
+  .pl-inner{width:calc(100% - 24px);padding:7px 0 calc(7px + env(safe-area-inset-bottom,0px))}
+  .pl-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+  .pl-id{flex:1 1 0;min-width:0}
+  .pl-ctrls{flex:0 0 auto;order:2}
+  .pl-txt h2{font-size:13.5px}
+  .ctrl-btn{width:44px;height:44px} .ctrl-btn svg{width:18px;height:18px}
+  .play-btn{width:48px;height:48px} .play-btn svg{width:20px;height:20px}
+  .pl-extra{order:9;width:100%;justify-content:space-between;gap:8px;margin-top:5px}
+  .spd select{min-height:40px;font-size:14.5px;padding:4px 8px}
+  .tgl{min-height:40px;font-size:12.5px}
+  .tgl input{width:40px;height:22px}
+  .tgl input::after{width:16px;height:16px;top:3px;right:3px}
+  .tgl input:checked::after{right:21px}
+  .pl-bar{margin-top:5px;gap:8px}
+  #wave{height:30px}
+  .pl-tm{font-size:11.5px;min-width:36px}
+  .pl-legend{display:none}
+
+  /* اهداف لمسی و خوانایی */
+  .logo{min-height:44px}
+  .crumb a,.crumb span{min-height:44px;display:inline-flex;align-items:center}
+  .tb-title{font-size:12px}
+}
+@media(max-width:420px){
+  .wrap{width:calc(100% - 20px)}
+  .seg{grid-template-columns:42px minmax(0,1fr);gap:2px 9px;padding:7px 6px}
+  .seg>.seg-p{font-size:14.5px;line-height:2.05}
+  .ch-dtitle{font-size:15px}
+  .mk-title{font-size:14.5px}
+  .mk-why{font-size:13.5px}
+  .pl-txt h2{font-size:13px}
+  .pl-inner,.wrap{width:calc(100% - 20px)}
+}
+@media(hover:none){ .seg:active,.ch-div:active{transform:scale(.995)} }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M3 12h2M7 8v8M11 5v14M15 9v6M19 11h2"/></svg>
+      </span>
+      شنیدار
+    </a>
+    <span class="tb-title">خروجی تحلیل اپیزود ۲۵</span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="head-sec">
+    <div class="crumb"><a href="index.html">شنیدار</a> › <span>راهکارها</span> › <b>پادکست و رسانه</b></div>
+    <h1 class="ep-t">خداحافظ آفریقا — اپیزود ۲۵</h1>
+    <p class="ep-sub">رونویسیِ زمان‌بندی‌شده، فصل‌بندی خودکار و تحلیل Dynamic Ad Insertionِ یک اپیزود — درباره‌ی کشف جمجمه‌ی یون‌شیان ۲ در چین، با حضور دکتر حامد وحدتی‌نسب، انسان‌دیرین‌شناس، و تهیه‌کنندگی سیاوش صفاریان‌پور. پخش را از نوار پایین شروع کنید؛ متن همگام با صوت جلو می‌رود.</p>
+  </section>
+
+  <!-- ========== تب‌ها ========== -->
+  <div class="tabs-wrap">
+    <div class="tabs" role="tablist">
+    <button class="tab on" data-sec="script" role="tab" aria-selected="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
+      متن کامل و فصل‌بندی <span class="cnt">۷ فصل</span>
+    </button>
+    <button class="tab" data-sec="dai" role="tab" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 7v5l3 2"/></svg>
+      تحلیل DAI <span class="cnt">۵ نقطه</span>
+    </button>
+    </div>
+    <span class="dai-hint" id="daiHint" aria-hidden="true">
+      <b>زمان‌بندی تبلیغ اینجاست</b>
+      <svg viewBox="0 0 60 44" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M53 7C36 10 17 19 10 31" stroke-dasharray="4 5"/>
+        <path d="M10 31l7-1.7M10 31l3-6.6"/>
+      </svg>
+    </span>
+  </div>
+
+  <!-- ========== بخش ۱: متن و فصل‌بندیِ ادغام‌شده ========== -->
+  <section id="sec-script">
+    <div class="sec-h">
+      <div class="sec-h-t">
+        <h2>متن کامل و فصل‌بندی خودکار</h2>
+        <span class="sub">همگام با صوت · روی هر خط یا هر فصل کلیک کنید تا از همان لحظه پخش شود</span>
+      </div>
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input type="search" id="q" placeholder="جستجو در متن اپیزود…">
+      </div>
+    </div>
+    <div class="script" id="script"></div>
+  </section>
+
+  <!-- ========== بخش ۲: تحلیل DAI ========== -->
+  <section id="sec-dai" hidden>
+    <div class="sec-h">
+      <div class="sec-h-t">
+        <h2>نقاط طلاییِ درج تبلیغ (DAI)</h2>
+        <span class="sub">پنج جایگاه از ابتدا تا انتهای اپیزود، با زمان دقیق و دلیلِ انتخابِ هر کدام</span>
+      </div>
+    </div>
+
+    <div class="timeline" id="timeline" title="روی هر بازه کلیک کنید تا پخش شود">
+      <div class="tl-head" id="tlHead" style="right:0"></div>
+      <span class="tl-lbl">۰۰:۰۰</span>
+    </div>
+
+    <div class="markers" id="markers"></div>
+
+    <span class="note">زمان‌ها بر حسب <b>ثانیه‌ی دقیقِ فایل</b> هستند و مستقیماً برای سرور تبلیغاتی یا پلتفرم میزبان قابل مصرف‌اند. روی هر نقطه، «پخش از این لحظه» را بزنید تا همان بازه در نوار پایین پخش شود.</span>
+  </section>
+
+  <footer>نمونه‌ی خروجی شنیدار — داده‌ها و فایل صوتی صرفاً برای نمایش هستند.</footer>
+</main>
+
+<!-- ========== پخش‌کننده‌ی چسبانِ پایین صفحه ========== -->
+<section class="player" id="player">
+  <div class="pl-inner">
+
+    <div class="pl-row">
+      <div class="pl-id">
+        <div class="pl-txt">
+          <h2>خداحافظ آفریقا — اپیزود ۲۵</h2>
+          <p>با حضور دکتر حامد وحدتی‌نسب · تهیه‌کنندگی سیاوش صفاریان‌پور</p>
+        </div>
+      </div>
+
+      <div class="pl-ctrls">
+        <button class="ctrl-btn" id="back10" aria-label="۱۰ ثانیه عقب">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L4 12l7 7"/><path d="M4 12h11a5 5 0 0 1 0 10h-2"/></svg>
+        </button>
+        <button class="play-btn" id="play" aria-label="پخش / توقف">
+          <svg id="playIco" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <button class="ctrl-btn" id="fwd10" aria-label="۱۰ ثانیه جلو">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7"/><path d="M20 12H9a5 5 0 0 0 0 10h2"/></svg>
+        </button>
+      </div>
+
+      <div class="pl-extra">
+        <span class="spd">سرعت
+          <select id="rate" aria-label="سرعت پخش">
+            <option value="0.75">۰.۷۵x</option>
+            <option value="1" selected>۱x</option>
+            <option value="1.25">۱.۲۵x</option>
+            <option value="1.5">۱.۵x</option>
+          </select>
+        </span>
+        <label class="tgl"><input type="checkbox" id="autoScroll" checked> دنبال‌کردن خودکار متن</label>
+      </div>
+    </div>
+
+    <div class="pl-bar">
+      <span class="pl-tm" id="cur">۰۰:۰۰</span>
+      <canvas id="wave" title="برای پرش به هر لحظه کلیک کنید"></canvas>
+      <span class="pl-tm dim" id="dur">۲۶:۳۳</span>
+    </div>
+
+    <div class="pl-legend">
+      <span><i class="lg-play"></i>پخش‌شده</span>
+      <span><i class="lg-rest"></i>باقی‌مانده</span>
+      <span><i class="lg-ch"></i>مرز فصل</span>
+      <span><i class="lg-dai"></i>بازه‌ی پیشنهادی تبلیغ</span>
+    </div>
+
+    <div class="notice" id="notice"></div>
+    <audio id="audio" src="audio/E25-KhodahafezAfrica.mp3" preload="metadata"></audio>
+  </div>
+</section>
+
+<script>
+/* ============================================================
+   داده‌های اپیزود — خروجیِ API شنیدار
+   (در استفاده‌ی واقعی این سه آرایه را با پاسخ API پر کنید)
+   ============================================================ */
+const EP = {
+  id: 'ep-25',
+  title: 'خداحافظ آفریقا — اپیزود ۲۵',
+  duration: 1593.7,
+  speakers: { 0:'صدا', 1:'میزبان' },
+
+  chapters: [
+    { t:0, title:'چرا این اپیزود ویژه است', sum:'خبر فراگیرِ کشف و نام‌گذاری یک جمجمه در چین، و تردیدی که در روایتِ رایجِ خروج از آفریقا ایجاد کرد.' },
+    { t:130, title:'مقاله‌ی ۲۰۲۴ در مجله‌ی Science', sum:'سرپرستیِ فنگ ژائو از دانشگاه پکن؛ بازسازی سه‌بعدیِ جمجمه‌ی یون‌شیان ۲ و انتساب دوباره‌ی آن به انسان لنگی.' },
+    { t:329, title:'داستان کشف یون‌شیان', sum:'کارگران استان هوبی در دهه‌ی هشتاد میلادی به دو جمجمه‌ی له‌شده برمی‌خورند که تا امروز بازسازی نشده بود.' },
+    { t:480, title:'هومو لونگی، انسان اژدها', sum:'جمجمه‌ی هاربین، ویژگی‌های عجیبش و این پرسش که آیا انسان لنگی همان انسان دنیسوواست یا نه.' },
+    { t:765, title:'بازخوانی مدل خروج از آفریقا', sum:'از انسان راست‌قامت تا انسان ماهر، خروج‌های پیاپی و نقشِ موانع جغرافیایی در رفت‌وبرگشتِ جمعیت‌ها.' },
+    { t:1134, title:'جایگاه این کشف در روایت', sum:'هم‌زمانیِ انسان لنگی با نئاندرتال‌ها و انسان هوشمند، و احتمال تبادل ژنتیکی در آسیای شرقی.' },
+    { t:1468, title:'جمع‌بندی: علم، پویا و در تصحیح خود', sum:'درخت تکاملیِ شاخه‌دارتر از تصور، پیش‌بینی‌های ژنتیکی و اشاره به اپیزود بیست‌وشش و اهلی‌شدن گاو.' }
+  ],
+
+  transcript: [
+    { t:2, e:14, sp:0, text:'[موسیقی]' },
+    { t:14, e:24, sp:1, text:'خداحافظ آفریقا با حضور دکتر حامد وحدتی نسب انسان دیرین' },
+    { t:24, e:25, sp:1, text:'شناس' },
+    { t:38, e:49, sp:1, text:'درودی می فرستم به همه عزیزان و علاقه مندان پادکست خداحافظ آفریقا، امروز که در خدمتتون هستیم با یک اپیزود ویژه' },
+    { t:49, e:59, sp:1, text:'در واقع می خوایم اپیزود بیست و پنج رو شروع بکنیم در هفته دوم مهرماه یک خبری خیلی فراگیر شد در خصوص کشف' },
+    { t:59, e:69, sp:1, text:'و نام‌گذاری یک جمجمه جدید در چین که به نوعی به قول حالا اصحاب رسانه داستان خروج از آفریقا' },
+    { t:69, e:79, sp:1, text:'رو مورد تردید قرار داده و اینکه پیدایش انسان هوشمند رو یه سناریو جدیدی براش مطرح کرده، خیلی از اخبار که به دست من می رسید' },
+    { t:79, e:89, sp:1, text:'و می خوندم شامل این می شد که خروج از آفریقا نیاز هست که بازنویسی بشه و صحبت هایی از این دست و از اونجایی که من و آقای صفاریانپور عزیز' },
+    { t:89, e:99, sp:1, text:'خیلی پیام دریافت کرده بودیم که لطفا این مورد جدید رو توضیح بدید چه اهمیتی داره، تصمیم گرفتیم که بیست و پنج رو به عنوان' },
+    { t:99, e:109, sp:1, text:'یک اپیزود ویژه در نظر بگیریم، یعنی از اون سیر روند پیچیده شدن جوامع انسانی که داشتیم در اپیزودهای قبل دنبال می کردیم' },
+    { t:109, e:120, sp:1, text:'و منظم توی زمان می اومدیم جلو و رسیده بودیم به حول و حوش هشت نه هزار سال پیش یک لحظه از اون دست بکشیم یه توقفی بکنیم یه پرانتزی باز بکنیم بریم سراغ' },
+    { t:120, e:130, sp:1, text:'این کشف جدید یک کم توضیحش بدیم و باید ببینیم که چطور می تونیم به سوالاتی که پیرامون این کشف به وجود اومده جواب بدیم، خب این کشف' },
+    { t:130, e:140, sp:1, text:'در مجله ساینس در سال ۲۰۲۴ شماره سیصد و هشتاد و نه منتشر می شه توسط یک گروه از دانشمندان که سرپرستی تیم' },
+    { t:140, e:150, sp:1, text:'رو شخصی به نام فنگ ژائو از دانشگاه پکن به عهده داشته، عنوان اصلی مقاله این هستش که The phylogenetic position of the Yunxian' },
+    { t:150, e:161, sp:1, text:'cranium حالا یعنی چی توی ترجمه اش می شه در واقع جایگاه' },
+    { t:161, e:171, sp:1, text:'این جمجمه جدید یون‌شیان باعث شده که یک رازگشایی جدید بشه از منشا انسان لنگی و انسان دنیسووا' },
+    { t:171, e:182, sp:1, text:'آنچه که در ابسترکت یا خلاصه مقاله آمده رو اگه من بخوام خدمتتون به صورت خیلی ساده ارائه بکنم این هست که این مقاله عنوان می کنه' },
+    { t:182, e:192, sp:1, text:'حدود یک میلیون سال پیش در چین، انسانی زندگی می کرده که فسیل جمجمه اش امروز با نام یون‌شیان یا یون‌شیان دو شناخته می شه،' },
+    { t:192, e:203, sp:1, text:'این جمجمه خیلی جمجمه مهمی بوده از این نظر که ما بتونیم سیر روند تکامل اجدادمون رو متوجه بشیم، مسئله ای که یون‌شیان داشته این بوده که' },
+    { t:203, e:213, sp:1, text:'یون‌شیان دو جمجمه دفورمه شده ای بوده به نوعی له شده بوده و تا امروز نتونسته بودن اینو درست بازسازیش بکنن، با استفاده از' },
+    { t:213, e:223, sp:1, text:'تکنیک های تری‌دی مادلینگ بسیار پیشرفته تونستن جمجمه رو به حالت معمولی خودش برگردونن و تحلیلشون توی این مقاله نشون' },
+    { t:223, e:233, sp:1, text:'می ده که این جمجمه که قبلا فکر می کردن نوعی از انسان راست‌قامت هست، به نوع دیگری از انسان به نام انسان لنگی تعلق' },
+    { t:233, e:243, sp:1, text:'داره، انسان لنگی انسانی هستش که من مجدد در موردش صحبت می کنم قبلا تو اپیزودهای پیشینمون بهش اشاره کرده بودیم نوعی از انسان' },
+    { t:243, e:253, sp:1, text:'دنیسووا هست که در آسیای مرکزی و جنوب آسیا در چین زندگی می کرده و ما مقدار بسیار کمی از دی‌ان‌ای این' },
+    { t:253, e:263, sp:1, text:'انسان دنیسووا رو توی خودمون حمل می کنیم، به ویژه آن هایی که در جنوب شرق آسیا زندگی می کنند و ساکنین جزایر اقیانوس' },
+    { t:263, e:274, sp:1, text:'آرام این مقاله عنوان می کنه که شاخه دنیسووا و شاخه انسان هوشمند دوتا شاخه خواهرخوانده هستند و ریشه' },
+    { t:274, e:284, sp:1, text:'های بسیار قدیمی دارند، به همین دلیل عنوان کردند که شاید جمجمه یون‌شیان یکی از حلقه های میانی باشه که به ما نشون' },
+    { t:284, e:293, sp:1, text:'بده این شاخه های انسان های هوشمند انسان لنگی یا دنیسووا و انسان نئاندرتال کی و کجا از همدیگه جدا شدن' },
+    { t:329, e:339, sp:1, text:'اما بیاییم ببینیم داستان این جمجمه یون‌شیان یا یون‌شیان دو چی هستش، داستان کشفش برمی گرده به دهه هشتاد' },
+    { t:339, e:349, sp:1, text:'میلادی توی استان هوبی چین کارگرا موقعی که مشغول کار بودن به دو تا جمجمه خیلی قدیمی برمی خورن، این جمجمه ها همون‌طور که اشاره کردم له' },
+    { t:349, e:359, sp:1, text:'شده و تکه تکه بودن و جنسشون هم از استخوان نبوده از سنگواره و فسیل بودن اسم این دوتا جمجمه رو گذاشتن یون‌شیان یک و یون‌شیان دو' },
+    { t:360, e:370, sp:1, text:'ولی مساله این بود که تا سال ها کسی نمی تونست بفهمه که شکل واقعی این جمجمه ها قبل از له شدگی چه شکلی بوده تا اینکه همون‌طور که اشاره' },
+    { t:370, e:380, sp:1, text:'کردم تو این مقاله جدید تونستم با تکنولوژی سه بعدی، یون‌شیان دو رو بازسازی بکنن و وقتی که بازسازی انجام شد به نوعی شگفتی' },
+    { t:380, e:391, sp:1, text:'هم با خودش آغاز شد، قبلا دانشمندا این یون‌شیان دو رو جزو انسان های راست‌قامت چینی در نظر گرفته بودن یا همون هومو ارکتوس ولی' },
+    { t:391, e:401, sp:1, text:'وقتی که بازسازیش انجام شد فهمیدن در یک سری از ویژگی ها با انسان راست‌قامت متفاوته، مثلا مغزش بزرگ تره و خیلی هم بزرگ تره،' },
+    { t:401, e:411, sp:1, text:'ما میانگین مغز انسان راست‌قامت رو یه چیز حول و حوش نهصد سی‌سی تا هزار سی‌سی در نظر می گیریم و مغز این جمجمه یون‌شیان یا چیزی نزدیک' },
+    { t:411, e:421, sp:1, text:'به هزار و چهارصد سی‌سی در واقع دقیقا در رنج مغز ما انسان های هوشمند هوشمند بوده، صورتش پهن تر بوده یک ویژگی' },
+    { t:421, e:432, sp:1, text:'کهنه اما گونه هاش برجسته و شکسته بوده که یک ویژگیه که ما انسان های مدرن داریم، پیشانیش صاف هست که یک ویژگی کهنه،' },
+    { t:432, e:442, sp:1, text:'این ویژگی ها رو وقتی دانشمندا توی یک جدول بیگ دیتا گذاشتن و با یه عالمه از صورت های انسان نئاندرتال و انسان هوشمند و' },
+    { t:442, e:452, sp:1, text:'انسان راست‌قامت مقایسه کردن فهمیدن که بیش از اینکه بخواد شبیه انسان راست‌قامت باشه شبیه اون انسانی است که ما به نام' },
+    { t:452, e:462, sp:1, text:'دراگون من یا انسان اژدها یا همون هومو لونگی معروف می شناسیم که اون هم یکی دو سال پیش در چین کشف شده بود، اما ماجرای' },
+    { t:462, e:472, sp:1, text:'هومو لونگی و دنیسوواها به چه صورت هستش، هومو لونگی رو اینجا اول باید توضیح بدیم که چه انسانی بوده که بعد برگردیم سراغ این کشف' },
+    { t:472, e:479, sp:1, text:'جدید تا متوجه بشیم که حالا این کشف جدید در ارتباط با انسان لنگی و انسان هوشمند' },
+    { t:480, e:491, sp:1, text:'رابطه جدیدی رو داره ایجاد می کنه، هومو لونگی یا انسان لنگی گونه ای از انسان های منقرض شده است که در سال ۲۰۲۱ توسط گروهی' },
+    { t:491, e:501, sp:1, text:'از پژوهشگران چینی معرفی شد اسمشم از رودخانه لونگ‌جیانگ که به نام اژدهای سیاه هست گرفته شده، لنگ یعنی اژدها و اصلا' },
+    { t:501, e:511, sp:1, text:'هومو لونگی یعنی مرد اژدها این جمجمه در سال ۱۹۳۰ در نزدیک این رودخانه در شهر هاربین کشف شد اما' },
+    { t:511, e:521, sp:1, text:'به دلایل سیاسی اجتماعی از نظرها برای سال ها پنهان موند و اصلا کسی مطالعه اش نکرد، مجددا در ۲۰۲۱ این' },
+    { t:521, e:531, sp:1, text:'رو دانشمندان انسان شناس چینی از مخزن موزه درآوردن و شروع کردن به مطالعه کردنش و دیدن که ویژگی های بسیار عجیب' },
+    { t:531, e:539, sp:1, text:'و غریبی داره، مثلا یکی از بزرگ ترین جمجمه های شناخته شده انسان های باستانی رو داره با حجم هزار و چهارصد و بیست سی‌سی' },
+    { t:540, e:550, sp:1, text:'پهن ابروهای ضخیم و در عین حال مسطح تر از نئاندرتال ها، چانه اش به نسبت به ما کمتر بیرون زدگی داشته و' },
+    { t:550, e:561, sp:1, text:'ترکیبی بوده از صفات بدوی و قدیمی و صفات پیشرفته، سنی که برای انسان لنگی در نظر گرفتند حدود صد و چهل و شش هزار ساله' },
+    { t:561, e:571, sp:1, text:'و پژوهشگران چینی مدعی شدن که انسان لنگی از منظر تکاملی از نئاندرتال ها به انسان خردمند نزدیک تره' },
+    { t:571, e:582, sp:1, text:'یعنی اول نئاندرتال ها و انسان های هوشمند از هم جدا شده اند و در اون خط سیری که انسان هوشمند داشته می رفته دو مرتبه' },
+    { t:582, e:592, sp:1, text:'یک پسرعموی دیگه ای ازش جدا شده در آسیای مرکزی و چین و اون انسانی شده به نام انسان لنگی که کاملا هم هم خانواده' },
+    { t:592, e:602, sp:1, text:'هست با انسان دنیسووا برخی از پژوهشگران هم از همون ابتدا گفتن که این هومو لونگی در واقع همون انسان دنیسوواست' },
+    { t:602, e:612, sp:1, text:'که ما ازش قبلا فقط دندان و بند انگشت داشتیم و حالا جمجمه اش هم پیدا کردیم، بنابراین برای اینکه داستان یه مقداری گیج کننده نشه،' },
+    { t:612, e:623, sp:1, text:'ما باید تو ذهنمون در نظر بگیریم که انسان لنگی و انسان دنیسووا تقریبا یک انسان هستند تا این لحظه که من دارم خدمت شما صحبت می کنم،' },
+    { t:623, e:633, sp:1, text:'یک جد مشترکی وجود داشته به احتمال خیلی زیاد گروهی از انسان های هایدلبرگ از این جد مشترک دو شاخه جدا شده، یک شاخه' },
+    { t:633, e:644, sp:1, text:'رفته به سمت تبدیل شدن به انسان هوشمند در آفریقا و یک شاخه دیگه رفته تبدیل شده به انسان های نئاندرتال' },
+    { t:644, e:654, sp:1, text:'جایی در جنوب غرب آسیا احتمالا و بعد این مسیری که داشته توی انسان هوشمند حرکت می کرده بخشی از این حرکت' },
+    { t:654, e:664, sp:1, text:'در بیرون از آفریقا رخ داده در جایی به نام چین و یک انسان دیگری حول و حوش یک میلیون سال پیش به وجود اومده به نام' },
+    { t:664, e:674, sp:1, text:'انسان لنگی یعنی یک دو شاخه دو مرتبه شده، همون شاخه ای که انسان هوشمند داشته حرکت می کرده و رفته جلو و در نهایت انسان لنگی و' },
+    { t:674, e:684, sp:1, text:'انسان هوشمند با همدیگه پسرعمو شدند و یک شاخه دیگه شدن همون نئاندرتال ها که ما اسماشونو خیلی شنیدیم و داستانشونو توی اپیزودهای' },
+    { t:684, e:694, sp:1, text:'قبلی تعریف کردیم به همین خاطر این کشف از این نظر خیلی مهمه که نشون می ده داستان خروج از آفریقا' },
+    { t:694, e:704, sp:1, text:'فقط و فقط خروج انسان های کامل و تکمیل شده هوشمند از آفریقا نبوده، بلکه' },
+    { t:704, e:714, sp:1, text:'برخی از اتفاقاتی که نهایتا گونه ما یعنی انسان هوشمند هوشمند رو پدید آورده در خارج از آفریقا هم رخ داده،' },
+    { t:714, e:725, sp:1, text:'حالا اگر بخواهیم داستان انسان لنگی و جمجمه جدید رو بذاریم توی یک بستر و متوجه بشیم که چه اتفاقی' },
+    { t:725, e:732, sp:1, text:'برای سیر خروج از آفریقا رخ داده باید به این صورت گام به گام با همدیگه بریم جلو' },
+    { t:765, e:775, sp:1, text:'خب حالا بیاین ببینیم انسان لنگی و این انسان جدیدی که توی چین کشف شده یعنی همین یون‌شیان دو اینا دارن چه تبصره' },
+    { t:775, e:786, sp:1, text:'جدیدی به داستان خروج از آفریقا وارد می کنن خب فلش بک بزنیم به مدل خروج از آفریقا توی خروج از آفریقا که در واقع' },
+    { t:786, e:796, sp:1, text:'به نوعی اسم این پادکست هم از اون گرفته شده یعنی خداحافظ آفریقا، ما شاهد پیدایش گونه های انسانی' },
+    { t:796, e:806, sp:1, text:'هستیم که بعد از مدت زمانی از این قاره یعنی قاره آفریقا خارج می شن و چرا می گیم خارج می شن، یک فرمول خیلی ساده ای داره' },
+    { t:806, e:816, sp:1, text:'ما به سن سنگواره ها نگاه می کنیم سنگواره هایی صورت مشابه در آفریقا در اروپا و در آسیا به دست اومدن، اگر' },
+    { t:816, e:826, sp:1, text:'اون گروه سنگواره ای اون انسان خاص پیدایششون در هر کدوم از این قاره ها قدیمی تر باشه، ما مبدا رو در اون قاره در نظر می گیریم' },
+    { t:826, e:837, sp:1, text:'و همیشه هم به لحاظ علمی عنوان می کنیم که آنچه که داریم می گیم تا این لحظه و تا این ساعت مصداق داره، خب تا این لحظه که من در خدمت شما هستم' },
+    { t:837, e:840, sp:1, text:'اولین انسانی که از قاره آفریقا' },
+    { t:841, e:851, sp:1, text:'بیرون اومده به نظر میاد که انسان راست‌قامت باشه، حوالیه دو میلیون سال پیش، اما بد نیست که این نکته رو هم تذکر بدم که' },
+    { t:851, e:861, sp:1, text:'شاید در چند ماه آینده یا چند سال آینده این عنوان اولین انسان خارج شده از آفریقا هم تغییر بکنه که البته موضوع' },
+    { t:861, e:871, sp:1, text:'این اپیزود نیست صرفا میام یک تلنگری به ذهن شنونده هامون زده باشم، زمزمه هایی هست که گویا نوع دیگری از انسان' },
+    { t:871, e:882, sp:1, text:'قبل از انسان راست‌قامت، آفریقا رو ترک کرده، اون نوع دیگر به احتمال خیلی زیاد گونه ای هست به نام انسان ماهر یا هومو هابیلیس' },
+    { t:882, e:892, sp:1, text:'در چند سال اخیر مقالاتی دارن منتشر می شن و با توجه به کشفیاتی که در نقاطی از بیرون از آفریقا به دست اومده مثل' },
+    { t:892, e:903, sp:1, text:'انسان گرجی با قدمت یک میلیون و هشتصد هزار سال پیش انسان فلورِسی و برخی دیگه از انسان ها به نظر می رسه تاکید می کنم به نظر می رسه' },
+    { t:903, e:913, sp:1, text:'که شاید هومو ارکتوس یا انسان راست‌قامت اولین انسانی نبوده که از آفریقا خارج شده، ولی خب بیایم با همین فرض رایج' },
+    { t:913, e:923, sp:1, text:'بریم جلو انسان راست‌قامت از آفریقا خارج شده و تا اندونزی پیش رفته، داستان انسان راست‌قامت رو ما در اپیزودهای اول خداحافظ آفریقا' },
+    { t:923, e:933, sp:1, text:'مفصل بهش پرداختیم جزیره جاوه اساسا اولین جایی بود که بقایایی انسان کشف شد و بعد ما بقایاش رو در اندونزی در چین پیدا کردیم در' },
+    { t:933, e:943, sp:1, text:'جنوب غرب آسیا همین طور در اروپا، قدیمی ترینشم که توی آفریقا به دست اومده با قدمت نزدیک دو ممیز دو دهم میلیون سال پیش منتها' },
+    { t:943, e:954, sp:1, text:'یادمون باشه ما وقتی که داریم می گیم خروج از آفریقا، خب طبیعتا اون ها پهنه قاره ای آفریقا رو نمی شناختن، ضمن اینکه این تقسیم بندی های قاره' },
+    { t:954, e:964, sp:1, text:'ای که به خاطر موانع جغرافیایی مثل دریاها شکل گرفته همیشه یکسان مثل امروز نبوده در بازه زمانی یک میلیون' },
+    { t:964, e:974, sp:1, text:'و هشتصد هزار سال پیش شواهد اقلیم شناسی نشون می ده که دریای سرخ و خلیج فارس وجود نداشتن، هر دوی این دو تا دریا دریاهای بسیار کم عمقی ان' },
+    { t:974, e:984, sp:1, text:'و با یک تغییر اقلیمی مثلا یک عصر سرد یخبندان و تشکیل توده های یخ، سطح آب های دریا می اومده پایین تر و آنچه که ما دریای سرخ می نامیم' },
+    { t:984, e:989, sp:1, text:'که شبه جزیره عربستان را از قاره آفریقا جدا می کنه از بین می رفته' },
+    { t:990, e:1000, sp:1, text:'و قاره آفریقا یک پهنه رو تشکیل می دادنند، همین مسئله در مورد خلیج فارس هم مصداق داشته و اون وقت آفریقا، عربستان و فلات ایران' },
+    { t:1000, e:1011, sp:1, text:'یک پهنه به هم پیوسته رو تشکیل می دادند، اینو از این نظر دارم عنوان می کنم که مانع جغرافیایی خیلی جدی برای رفت و آمد و خروج' },
+    { t:1011, e:1021, sp:1, text:'و بازگشت دوباره از آفریقا به فلات آسیا و اوراسیا وجود نداره که در خیلی از زمان ها و انسان ها به راحتی در این دو مسیر به صورت رفت و برگشت' },
+    { t:1021, e:1031, sp:1, text:'حرکت می کردن، اگر ما از عناوینی به نام خروج از آفریقا اسم می بریم، صرفا برای ساده تر کردن فهم مسئله است، اصلا این گونه نبوده که' },
+    { t:1031, e:1041, sp:1, text:'یک بار یک دسته بزرگ از انسان راست‌قامت به ناگهان از آفریقا خارج بشه و بعد این خروج متوقف بشه و بعد مثلا یک میلیون سال بعد یه گروه' },
+    { t:1041, e:1051, sp:1, text:'دیگه ای برم بیرون، این رفت و برگشت مداوم بوده ما به لحاظ شواهد سن سنجی که از نمونه هامونده داریم می بینیم که' },
+    { t:1051, e:1061, sp:1, text:'در یه بازه زمانی یک نوع از انسانی که در آفریقا زندگی می کرده از اون به بعد در آسیا یا در اروپا هم سروکله ش پیدا شده و اینجا اسمشو' },
+    { t:1061, e:1071, sp:1, text:'می ذاریم مثلا خروج از آفریقای دو، خروج از آفریقای سه ولی واقعیت اینه که این خروج و ورود مداوم بوده، پس یک میلیون و هشتصد هزار سال پیش' },
+    { t:1071, e:1082, sp:1, text:'ما خروج از آفریقای یک رو داریم، یک خروج میانی داریم در واقع که خیلی بزرگ هم هست حول و حوش چهار صد تا ششصد هزار سال' },
+    { t:1082, e:1092, sp:1, text:'پیش رخ داده یعنی اجداد مشترک نئاندرتال ها، دنیسوواها و ما که همون انسان های هایدلبرگ باشه از آفریقا بیرون اومدن' },
+    { t:1092, e:1103, sp:1, text:'در اروپا یا خاورمیانه تبدیل به نئاندرتال شدن و در آسیا هم شاخه جدیدی رو به وجود آوردن که همون انسان لنگی باشه،' },
+    { t:1103, e:1113, sp:1, text:'مجددا ما یک خروج از آفریقای نهایی داریم که بین بازه زمانی شصت تا هفتاد سال پیش رخ داده و این بار اجداد' },
+    { t:1113, e:1123, sp:1, text:'مستقیم ما یعنی انسان های هوشمند هوشمند از آفریقا خارج شدند با نئاندرتال ها و دنیسوواها تا حدود کمی آمیزش' },
+    { t:1123, e:1134, sp:1, text:'داشتند و نهایتا جایگزین اون ها شدن، اما این جایگاه کشف جدیدی که در چین رخ داده در این داستان خروج از آفریقا' },
+    { t:1134, e:1144, sp:1, text:'چی هستش جمجمه انسان لنگی همونطور که اشاره کردم مربوط به صد و چهل و شش هزار سال پیشه یعنی همون بازه زمانی که نئاندرتال' },
+    { t:1144, e:1154, sp:1, text:'ها توی اروپا زندگی می کردن و انسان های هوشمند در آفریقا نشون می ده که در چین و شرق آسیا هم همزمان' },
+    { t:1154, e:1165, sp:1, text:'با آفریقا یک جمعیت به نسبت پیشرفته انسانی وجود داشته، جمعیتی که برخی اون ها رو انسان دنیسووا می نامند، برخی هم به اون ها انسان' },
+    { t:1165, e:1175, sp:1, text:'لنگی می گن، یعنی زمانی که اجداد مستقیم ما حول و حوش شصت و هفتاد سال پیش از آفریقا اومدن بیرون توی آسیا فقط با' },
+    { t:1175, e:1185, sp:1, text:'نئاندرتال ها مواجه نشدن، بلکه با انسان دیگری هم مواجه شدن به نام انسان لنگی و به احتمال خیلی زیاد هم باهاش' },
+    { t:1185, e:1195, sp:1, text:'در واقع تبادل ژنتیکی داشتن، این به ما نشون می ده که درخت تکاملی انسان خیلی شاخه دارتر از اون چیزی بوده که قبلا' },
+    { t:1195, e:1206, sp:1, text:'تصور می کردیم به ما نشون می ده که چین و آسیای شرقی یک مسیر گذر نبودن، بلکه در خودشون هم اتفاقای خیلی مهمی' },
+    { t:1206, e:1216, sp:1, text:'رخ داده و اون اتفاقا با آمیزشی که با انسان های هوشمند داشتن منجر به شکل گیری خزانه ژنتیکی ما انسان' },
+    { t:1216, e:1226, sp:1, text:'های امروزی شده، کشف انسان لنگی یا همین یون‌شیان دو نشون می ده که داستان تکامل ما یک داستان صرفا آفریقایی' },
+    { t:1226, e:1236, sp:1, text:'نیست، بلکه یک شبکه جهانی از تعاملات ژنتیکی بین جمعیت های مختلف بوده یا اگه بخوام تو یک جمع بندی خیلی اینو' },
+    { t:1236, e:1246, sp:1, text:'ساده ترش بکنم، اون روایت خطی که همواره انسان ها در آفریقا پدیدار شدن، از آفریقا بیرون اومدن و انسان های' },
+    { t:1246, e:1256, sp:1, text:'خارج از آفریقا رو جایگزین کردند و با یک تعامل ژنتیکی خیلی خیلی محدود، اون روایت داره یه کم تغییر می کنه، نه به این معنی که' },
+    { t:1256, e:1259, sp:1, text:'انسان ها از آفریقا خارج نشدند که شدند' },
+    { t:1260, e:1270, sp:1, text:'انسان هایی هم که در خارج از آفریقا زندگی می کردند، بیش از آن چیزی که فکر می کردیم توی شکل گیری خزانه ژنتیکی و' },
+    { t:1270, e:1281, sp:1, text:'شکل دهی ما هم نقش داشتن، قبلا همواره اینطوری ما می دیدیم که انسان هوشمند هوشمند یه گونه مهاجم برنده ست، هر جایی که وارد می' },
+    { t:1281, e:1291, sp:1, text:'شده اگه نئاندرتال ها زندگی می کردن تو یک رقابت طولانی مدت نئاندرتال رو ریخته بیرون و حذفشون کرد و بین یک تا چهار درصد هم باهاشون تبادل ژنی' },
+    { t:1291, e:1301, sp:1, text:'داشته که اصلا چیز زیادی نیست، اگه رفته جایی که دنیسوواها بودن، دنیسوواها رو از اون منطقه ریخته بیرون و یه چیز حول و حوش یک تا دو درصد هم باهاشون تبادل' },
+    { t:1301, e:1311, sp:1, text:'ژنتیکی داشته، اگه رفته به جنوب شرق آسیا و بازماندگان انسان راست‌قامت رو دیده با کمترین آمیزش ژنتیکی، صرفا منقرضشون کرده،' },
+    { t:1311, e:1322, sp:1, text:'اگه رسیده به جزایر اندونزی مثل جزیره فلورز و انسان های کوتاه قامت، هابیت ها یا انسان فلورِسی رو دیده کم ترین میزان تداخل ژنتیکی' },
+    { t:1322, e:1333, sp:1, text:'صرفا قلمروشون رو اشغال کرده، این تصویریه که تا قبل از انتشار این مقاله در هفته گذشته داشتیم، تصویری که الان داره شکل می گیره' },
+    { t:1333, e:1343, sp:1, text:'اینه که این روند خیلی پیچیده تره یعنی زمانی که شاخه های انسانی از هم جدا می شدند، هیچ منعی وجود نداشته که چندصد هزار' },
+    { t:1343, e:1349, sp:1, text:'سال بعد که همدیگه رو می بینن دو مرتبه با همدیگه تشکیل یک شاخه مشترک رو بدن' },
+    { t:1350, e:1360, sp:1, text:'تعامل یا دگرگشت انسان یک روندی نبوده که شاخه ها از هم جدا بشن و تا ابد این شاخه ها به صورت جدا از همدیگه به مسیرشون' },
+    { t:1360, e:1370, sp:1, text:'ادامه بدن، بلکه شاخه ها مثل یک پیچکی بودند که جدا می شدند و به هم می رسیدند، جدا می شدند و به هم می رسیدند، این اتفاق هم برای انسان' },
+    { t:1370, e:1381, sp:1, text:'هوشمند رخ داده، هم برای انسان نئاندرتال و هم برای این انسان جدید یعنی انسان لنگی بنابراین درخت تطوری رو باید خیلی پیچیده تر' },
+    { t:1381, e:1391, sp:1, text:'و با فراز و فرودهای خیلی بیشتری بهش نگاه بکنیم، ضمن اینکه تحقیقات ژنتیکی هم که در سال ۲۰۲۰ انجام شده بود، قبلا این وعده رو داده' },
+    { t:1391, e:1402, sp:1, text:'بود که در آینده انسان های جدیدی در آسیای مرکزی و جنوب آسیا و همچنین در بخش غربی آفریقا' },
+    { t:1402, e:1412, sp:1, text:'پیدا خواهند شد که هنوز سنگواره هاشون پیدا نشده این پیش بینی رو چطور انجام داده بودن از روی مطالعات ژنتیکی یعنی ما در بدن خودمون' },
+    { t:1412, e:1422, sp:1, text:'ژن هایی رو حمل می کنیم که نه مختص به نئاندرتال هاست، نه مختص به دنیسوواهاست، نه مختص به خودمونه، بلکه مختص به چندین گروه دیگری' },
+    { t:1422, e:1433, sp:1, text:'از انسان ها هستش که ما هنوز سنگواره هاشون رو کشف نکردیم، بنابراین ژنتیک این پیش بینی رو برای ما انجام داده بود که درخت دگرگشتی انسان' },
+    { t:1433, e:1468, sp:1, text:'خیلی پیچیده تر از این حرفاست و الان با کشفیاتی که داره انجام می شه در واقع پیش بینی های علمی ما داره به تحقق می پیونده' },
+    { t:1468, e:1478, sp:1, text:'این اتفاقاتی که داره می افته در علم دیرین انسان شناسی کشفیات اخیر، این هیجان هایی که ایجاد می شه، در واقع نشون دهنده' },
+    { t:1478, e:1489, sp:1, text:'ماهیت علمه علم در ذات خودش پویایی داره، دانشمندان مدام در حال تصحیح خودشون هستن، مدام در حال تصحیح حرف گذشتگان هستن' },
+    { t:1489, e:1499, sp:1, text:'و بنابراین هر صحبتی که می کنیم باید حواسمون باشه که این مدل سازی این الگو تا اون موقع معنی می ده و باید کاملا منتظر باشیم' },
+    { t:1500, e:1510, sp:1, text:'در کنار اتفاقای جدیدی که می‌افته، واکنش جامعه علمی جهانی رو ببینیم و مجددا الگوهای خودمونو در معرض ارزیابی قرار بدیم، این' },
+    { t:1510, e:1520, sp:1, text:'ماهیت علم زیبایی علم هم در همین هستش و پس از این اپیزود که به عنوان یک اپیزود ویژه بود، ما در اپیزود بیست و شش مجددا به' },
+    { t:1520, e:1531, sp:1, text:'سیر داستانی خودمون برمی گردیم به بازه زمانی حول و حوش هشت نه هزار سال پیش و اتفاق خیلی مهمی که خصوص' },
+    { t:1531, e:1534, sp:1, text:'اهلی شدن حیوانی به نام گاو رخ داد' }
+  ],
+
+  dai: [
+    { type:'pre-roll',  start:0,    end:14,   safe:true,  title:'نقطه ابتدایی (Pre-Roll)',
+      why:'پیش از آغازِ کلام و در خلالِ تیتراژ. شنونده تازه فایل را باز کرده و هنوز در حال گوش‌دادن است، پس توجه در ابتدایی‌ترین و دست‌نخورده‌ترین حالت خود قرار دارد. این جایگاه برای یک پیامِ کوتاهِ ۱۰ تا ۱۵ ثانیه‌ای مناسب است و هیچ گفتاری را قطع نمی‌کند.' },
+    { type:'mid-roll',  start:315,  end:348,  safe:true,  title:'نقطه طلایی اول (Mid-Roll 1)',
+      why:'در این لحظه دکتر وحدتی‌نسب مقدمات را گفته و شنونده با موضوع «جمجمه جدید» درگیر شده است؛ حالا یک وقفه‌ی کوتاه موسیقی وجود دارد. ذهن شنونده آماده‌ی پذیرش یک محتوای کوتاه، پیش از ورود به جزئیات تخصصیِ انسان لنگی است.' },
+    { type:'mid-roll',  start:753,  end:785,  safe:true,  title:'نقطه طلایی دوم (Mid-Roll 2)',
+      why:'بخش مربوط به معرفی «انسان لنگی» تمام شده و پادکست می‌خواهد وارد بحث کلانِ «نظریه خروج از آفریقا» شود. این طولانی‌ترین وقفه‌ی موسیقی در میانه‌ی پادکست است و بهترین جا برای یک تبلیغ طولانی‌تر (۳۰ تا ۴۵ ثانیه) به‌شمار می‌رود.' },
+    { type:'mid-roll',  start:1465, end:1485, safe:true,  title:'نقطه طلایی سوم (Mid-Roll 3)',
+      why:'دقیقاً پیش از جمع‌بندی نهایی و صحبت درباره‌ی اپیزود آینده. شنونده تا اینجا همراه بوده، پس نرخ تعامل (Engagement) در بالاترین سطحِ خود است.' },
+    { type:'post-roll', start:1555, end:1593, safe:true,  title:'نقطه انتهایی (Post-Roll)',
+      why:'پس از اتمام جمله‌ی آخر و اشاره به قسمت بیست‌وشش. شنونده هنوز در فایل حضور دارد و این آخرین فرصت برای یک فراخوان مستقیم است.' }
+  ]
+};
+
+/* ============================================================
+   ابزارها
+   ============================================================ */
+const $ = (s,c)=> (c||document).querySelector(s);
+const $$ = (s,c)=> Array.from((c||document).querySelectorAll(s));
+const FA = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+const fa = n => String(n).replace(/[0-9]/g, d=>FA[+d]);
+const pad = n => String(Math.floor(n)).padStart(2,'0');
+const mmss = s => fa(pad(s/60))+':'+fa(pad(s%60));
+const clamp = (v,a,b)=> Math.max(a,Math.min(b,v));
+const esc = t => t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+/* ============================================================
+   وضعیت پخش
+   ============================================================ */
+const audio = $('#audio');
+const state = { t:0, playing:false, ready:false, virtual:false, dur:EP.duration, rate:1 };
+let segEls = [], chEls = [], mkEls = [];
+let lastAi = -1;
+
+/* ---------- لغزشِ نرمِ صفحه/کادر ---------- */
+const REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let glideRaf = 0, glideAim = null, gliding = false;
+function glideTo(target){
+  const box = $('#script');
+  const inner = box.scrollHeight > box.clientHeight + 5;
+  const get = ()=> inner ? box.scrollTop : window.scrollY;
+  const max = inner ? (box.scrollHeight - box.clientHeight)
+                    : (document.documentElement.scrollHeight - window.innerHeight);
+  const to = clamp(target, 0, Math.max(0, max));
+  const from = get();
+  if(Math.abs(to - from) < 4) return;
+  /* اگر هم‌اکنون به همین مقصد در حرکتیم، منحنی را از نو شروع نکن (عاملِ لرزش) */
+  if(gliding && glideAim !== null && Math.abs(to - glideAim) < 14) return;
+  glideAim = to; gliding = true;
+  if(REDUCED){ inner ? (box.scrollTop = to) : window.scrollTo({top:to, behavior:'instant'}); gliding = false; return; }
+  cancelAnimationFrame(glideRaf);
+  const dist = Math.abs(to - from);
+  const dur = clamp(700 + dist * 0.5, 780, 1700);          /* آهسته‌تر = نرم‌تر */
+  const ease = x => x < .5 ? 4*x*x*x : 1 - Math.pow(-2*x + 2, 3) / 2;
+  const t0 = performance.now();
+  const set = v => { inner ? (box.scrollTop = v) : window.scrollTo({top:v, behavior:'instant'}); };
+  (function step(now){
+    const k = Math.min(1, (now - t0) / dur);
+    set(from + (to - from) * ease(k));
+    if(k < 1) glideRaf = requestAnimationFrame(step);
+    else { gliding = false; glideAim = null; }
+  })(performance.now());
+}
+
+/* ---------- موج صوتی ---------- */
+const cv = $('#wave'), ctx2d = cv.getContext('2d');
+let bars = [], dpr = 1;
+function rng(seed){ let s = seed*9301+49297; return ()=>{ s=(s*9301+49297)%233280; return s/233280; }; }
+function makeBars(n){
+  const r = rng(41), out = new Array(n); let v = .35;
+  for(let i=0;i<n;i++){
+    const env = 0.55 + 0.45*Math.sin((i/n)*Math.PI*1.2);
+    v = v*0.6 + r()*0.4;
+    out[i] = clamp(v*env + 0.1, .08, 1);
+  }
+  return out;
+}
+function sizeCanvas(){
+  dpr = Math.min(2, window.devicePixelRatio||1);
+  const w = cv.clientWidth || 600, h = cv.clientHeight || 96;
+  cv.width = w*dpr; cv.height = h*dpr;
+  ctx2d.setTransform(dpr,0,0,dpr,0,0);
+  bars = makeBars(Math.max(60, Math.floor(w/6)));
+  drawWave(state.t/state.dur);
+}
+function drawWave(p){
+  const w = cv.width/dpr, h = cv.height/dpr;
+  ctx2d.setTransform(dpr,0,0,dpr,0,0);
+  ctx2d.clearRect(0,0,w,h);
+  ctx2d.save(); ctx2d.translate(w,0); ctx2d.scale(-1,1);   /* آینه: ابتدا در سمت راست */
+  const n = bars.length, gap = 2, bw = Math.max(2,(w-gap*(n-1))/n), mid = h/2;
+
+  /* بازه‌های تبلیغ */
+  EP.dai.forEach(m=>{
+    const x1 = (m.start/state.dur)*w, x2 = (m.end/state.dur)*w;
+    ctx2d.fillStyle = 'rgba(180,83,9,.13)';
+    ctx2d.fillRect(x1, 0, Math.max(2,x2-x1), h);
+    ctx2d.fillStyle = 'rgba(180,83,9,.55)';
+    ctx2d.fillRect(x1, 0, 1.6, h); ctx2d.fillRect(x2-1.6, 0, 1.6, h);
+  });
+  /* میله‌ها */
+  const played = Math.floor((p||0)*n);
+  for(let i=0;i<n;i++){
+    const bh = Math.max(3, bars[i]*(h*0.40));
+    const x = i*(bw+gap);
+    ctx2d.fillStyle = i<=played ? '#0F766E' : 'rgba(15,23,42,.16)';
+    const rr = Math.min(bw/2,2);
+    ctx2d.beginPath();
+    ctx2d.roundRect ? ctx2d.roundRect(x, mid-bh, bw, bh*2, rr) : ctx2d.rect(x, mid-bh, bw, bh*2);
+    ctx2d.fill();
+  }
+  /* مرز فصل‌ها */
+  EP.chapters.forEach((c,i)=>{
+    if(!i) return;
+    const x = (c.t/state.dur)*w;
+    ctx2d.fillStyle = 'rgba(6,78,59,.75)';
+    ctx2d.fillRect(x-1, 4, 2, h-8);
+  });
+  /* نشانگر */
+  const px = clamp((p||0)*w, 0, w-2);
+  ctx2d.fillStyle = '#0B5C56'; ctx2d.fillRect(px, 0, 2, h);
+  ctx2d.globalAlpha = .28; ctx2d.fillStyle = '#0F766E';
+  ctx2d.beginPath(); ctx2d.arc(px+1, mid, 4, 0, Math.PI*2); ctx2d.fill();
+  ctx2d.globalAlpha = 1;
+  ctx2d.restore();
+}
+cv.addEventListener('click', e=>{
+  const r = cv.getBoundingClientRect();
+  seek(clamp((r.right - e.clientX)/r.width, 0, 1) * state.dur);  // RTL
+});
+
+/* ============================================================
+   ساخت رابط
+   ============================================================ */
+/* --- متن + فصل‌بندیِ ادغام‌شده --- */
+function buildScript(filter){
+  const box = $('#script'); box.innerHTML = '';
+  const q = (filter||'').trim();
+  let ci = 0; segEls = []; chEls = [];
+  let shown = 0;
+
+  function addChapter(){
+    const c = EP.chapters[ci];
+    const d = document.createElement('div');
+    d.className = 'ch-div'; d.dataset.t = c.t;
+    d.innerHTML =
+      '<span class="ch-dt">'+mmss(c.t)+'</span>'+
+      '<span class="ch-dtitle">'+esc(c.title)+'</span>'+
+      '<span class="ch-dsum">'+esc(c.sum)+'</span>';
+    d.addEventListener('click', ()=>{ seek(c.t); if(!state.playing) play(); });
+    box.appendChild(d); chEls[ci] = d; ci++;
+  }
+
+  EP.transcript.forEach((s,i)=>{
+    while(ci < EP.chapters.length && s.t >= EP.chapters[ci].t) addChapter();
+    if(q && s.text.indexOf(q) === -1) { segEls[i] = null; return; }
+    shown++;
+
+    const el = document.createElement('div');
+    el.className = 'seg' + (s.sp === 0 ? ' cue' : ''); el.dataset.t = s.t;
+    let txt = esc(s.text);
+    if(q) txt = txt.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'), m=>'<mark>'+m+'</mark>');
+    el.innerHTML =
+      '<time>'+mmss(s.t)+'</time>'+
+      '<p class="seg-p">'+txt+'</p>'+
+      (s.mark ? '<span class="seg-mark">◎ '+esc(s.mark)+'</span>' : '');
+    el.addEventListener('click', e=>{ if(e.target.tagName==='TIME'){ e.stopPropagation(); } seek(s.t); if(!state.playing) play(); });
+    box.appendChild(el); segEls[i] = el;
+  });
+
+  while(ci < EP.chapters.length) addChapter();
+
+  if(!shown) box.innerHTML = '<div class="empty">هیچ موردی با این عبارت پیدا نشد.</div>';
+}
+
+/* --- مارکرهای DAI --- */
+function buildDai(){
+  const box = $('#markers'); box.innerHTML = '';
+  mkEls = EP.dai.map((m,i)=>{
+    const d = document.createElement('div');
+    d.className = 'mk';
+    d.innerHTML =
+      '<div class="mk-top">'+
+        '<span class="mk-num">'+fa(i+1)+'</span>'+
+        '<span class="mk-title">'+esc(m.title)+'</span>'+
+        '<span class="mk-type'+(m.type==='post-roll'?' post':'')+'">'+m.type+'</span>'+
+        '<span class="mk-t">'+mmss(m.start)+' → '+mmss(m.end)+'</span>'+
+      '</div>'+
+      '<p class="mk-why">'+esc(m.why)+'</p>'+
+      '<div class="mk-foot">'+
+        (m.safe
+          ? '<span class="safe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>نقطه امن برای برش</span>'
+          : '')+
+        '<div class="mk-act">'+
+          '<button class="mini js-go">▶ پخش از این لحظه</button>'+
+          '<button class="mini js-copy">کپی مختصات</button>'+
+        '</div>'+
+      '</div>';
+    $('.js-go', d).addEventListener('click', ()=>{ seek(m.start); if(!state.playing) play(); });
+    $('.js-copy', d).addEventListener('click', ()=> copy(m.start+'s → '+m.end+'s'));
+    box.appendChild(d);
+    return d;
+  });
+
+  const tl = $('#timeline');
+  $$('.tl-bar', tl).forEach(b=>b.remove());
+  EP.dai.forEach((m,i)=>{
+    const b = document.createElement('div');
+    b.className = 'tl-bar';
+    b.style.right = (m.start/state.dur*100)+'%';
+    b.style.width = ((m.end-m.start)/state.dur*100)+'%';
+    b.title = 'نقطه '+fa(i+1)+' — '+m.type;
+    b.innerHTML = '<b>'+fa(i+1)+'</b>';
+    b.addEventListener('click', ()=>{ seek(m.start); if(!state.playing) play(); });
+    tl.appendChild(b);
+  });
+  tl.appendChild($('#tlHead'));
+}
+
+/* ============================================================
+   همگام‌سازی
+   ============================================================ */
+function tick(t){
+  state.t = clamp(t, 0, state.dur);
+  $('#cur').textContent = mmss(state.t);
+
+  /* قطعه‌ی فعال */
+  let ai = -1;
+  for(let i=0;i<EP.transcript.length;i++) if(EP.transcript[i].t <= state.t + .01) ai = i;
+  segEls.forEach((el,i)=>{
+    if(!el) return;
+    el.classList.toggle('on', i===ai);
+    el.classList.toggle('past', i<ai);
+  });
+  /* افکتِ بسیار ملایم هنگامِ جابه‌جاییِ جمله‌ی فعال */
+  const cur = segEls[ai] || null;
+  if(ai !== lastAi){
+    if(segEls[lastAi]) segEls[lastAi].classList.remove('enter');
+    if(cur){ cur.classList.remove('enter'); void cur.offsetWidth; cur.classList.add('enter'); }
+    lastAi = ai;
+  }
+
+  /* دنبال‌کردن خودکار: لغزشِ نرم فقط وقتی قطعه از نوارِ امن خارج شد */
+  if(cur && $('#autoScroll').checked && $('#sec-script').hidden === false){
+    const box = $('#script');
+    const cr = cur.getBoundingClientRect();
+    if(box.scrollHeight > box.clientHeight + 5){
+      const br = box.getBoundingClientRect();
+      const rel = cr.top - br.top;
+      const anchor = box.clientHeight * 0.40;
+      if(rel < anchor*0.4 || cr.bottom > br.bottom - 24) glideTo(box.scrollTop + rel - anchor);
+    } else {
+      const vh = window.innerHeight;
+      if(cr.top < vh*0.22 || cr.bottom > vh*0.60) glideTo(window.scrollY + cr.top - vh*0.34);
+    }
+  }
+
+  /* فصل فعال */
+  let ci = 0;
+  EP.chapters.forEach((c,i)=>{ if(c.t <= state.t + .01) ci = i; });
+  chEls.forEach((el,i)=> el.classList.toggle('on', i===ci));
+
+  /* مارکر فعال */
+  mkEls.forEach((el,i)=>{
+    const m = EP.dai[i];
+    el.classList.toggle('on', state.t >= m.start && state.t < m.end);
+  });
+
+  drawWave(state.t/state.dur);
+  const head = $('#tlHead');
+  if(head) head.style.right = (state.t/state.dur*100)+'%';
+}
+
+function seek(t){
+  const v = clamp(t, 0, state.dur);
+  state.t = v;
+  tick(v);                    /* به‌روزرسانی فوریِ رابط، بدون انتظار برای صوت */
+  if(state.ready){ try{ audio.currentTime = v; }catch(e){} }
+}
+function play(){
+  if(state.ready){ audio.play().catch(()=>{}); }
+  state.playing = true; $('#playIco').innerHTML = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+}
+function pause(){
+  if(state.ready){ audio.pause(); }
+  state.playing = false; $('#playIco').innerHTML = '<path d="M8 5v14l11-7z"/>';
+}
+function toggle(){ state.playing ? pause() : play(); }
+
+/* حالت مجازی: اگر فایل صوتی در دسترس نباشد، زمان به‌صورت شبیه‌سازی‌شده جلو می‌رود */
+let lastTs = 0;
+(function loop(ts){
+  if(!lastTs) lastTs = ts;
+  const dt = Math.min(.05,(ts-lastTs)/1000); lastTs = ts;
+  if(state.playing && !state.ready){
+    let nt = state.t + dt;
+    if(nt >= state.dur){ nt = state.dur; pause(); }
+    tick(nt);
+  }
+  requestAnimationFrame(loop);
+})(0);
+
+/* ============================================================
+   رویدادهای صوت
+   ============================================================ */
+audio.addEventListener('loadedmetadata', ()=>{
+  state.ready = true; state.virtual = false;
+  if(isFinite(audio.duration) && audio.duration > 1) state.dur = audio.duration;
+  $('#dur').textContent = mmss(state.dur);
+  $('#notice').classList.remove('show');
+  tick(0);
+});
+audio.addEventListener('timeupdate', ()=> tick(audio.currentTime));
+audio.addEventListener('play',  ()=>{ state.playing = true;  $('#playIco').innerHTML = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>'; });
+audio.addEventListener('pause', ()=>{ state.playing = false; $('#playIco').innerHTML = '<path d="M8 5v14l11-7z"/>'; });
+audio.addEventListener('ended', ()=>{ state.playing = false; $('#playIco').innerHTML = '<path d="M8 5v14l11-7z"/>'; });
+audio.addEventListener('error', ()=>{
+  state.ready = false;
+  const n = $('#notice');
+  n.innerHTML = 'فایل صوتی در این مسیر پیدا نشد؛ پخش‌کننده در حالت <b>شبیه‌سازی‌شده</b> کار می‌کند تا همگامیِ متن، فصل‌ها و نقاط DAI را ببینید.';
+  n.classList.add('show');
+  state.dur = EP.duration; $('#dur').textContent = mmss(state.dur);
+});
+
+$('#play').addEventListener('click', toggle);
+$('#back10').addEventListener('click', ()=> seek(state.t - 10));
+$('#fwd10').addEventListener('click', ()=> seek(state.t + 10));
+$('#rate').addEventListener('change', e=>{ state.rate = parseFloat(e.target.value); audio.playbackRate = state.rate; });
+
+/* جستجو */
+$('#q').addEventListener('input', e=> buildScript(e.target.value));
+
+/* تب‌ها */
+$$('.tabs .tab').forEach(tab=> tab.addEventListener('click', ()=>{
+  $$('.tabs .tab').forEach(x=>{ x.classList.remove('on'); x.setAttribute('aria-selected','false'); });
+  tab.classList.add('on'); tab.setAttribute('aria-selected','true');
+  $('#sec-script').hidden = tab.dataset.sec !== 'script';
+  $('#sec-dai').hidden    = tab.dataset.sec !== 'dai';
+  if(tab.dataset.sec === 'dai'){ const h = $('#daiHint'); if(h) h.classList.add('hide'); }
+}));
+
+/* ============================================================
+   ابزارهای کمکی
+   ============================================================ */
+function copy(txt){
+  navigator.clipboard ? navigator.clipboard.writeText(txt).then(()=>toast('کپی شد')) : toast(txt);
+}
+function toast(msg){
+  let t = $('#toast');
+  if(!t){ t = document.createElement('div'); t.id='toast';
+    t.style.cssText='position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#0E1729;color:#fff;padding:11px 20px;border-radius:12px;font-size:13.5px;z-index:200;opacity:0;transition:.3s';
+    document.body.appendChild(t); }
+  t.textContent = msg; t.style.opacity = '1';
+  clearTimeout(t._h); t._h = setTimeout(()=> t.style.opacity='0', 2200);
+}
+
+/* ============================================================
+   کلیدهای میانبر/* ============================================================
+   کلیدهای میانبر
+   ============================================================ */
+document.addEventListener('keydown', e=>{
+  if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+  if(e.code === 'Space'){ e.preventDefault(); toggle(); }
+  if(e.code === 'ArrowRight'){ seek(state.t + 5); }
+  if(e.code === 'ArrowLeft'){ seek(state.t - 5); }
+});
+
+/* ============================================================
+   راه‌اندازی
+   ============================================================ */
+buildScript(); buildDai();
+
+/* اگر metadata پیش از اتصال رویدادها رسیده باشد، وضعیت را اینجا یک‌بار تنظیم کن */
+(function initAudioState(){
+  if(audio.readyState >= 1 && isFinite(audio.duration) && audio.duration > 1){
+    state.ready = true;
+    state.dur = audio.duration;
+    $('#notice').classList.remove('show');
+  } else {
+    state.ready = false;
+  }
+  $('#dur').textContent = mmss(state.dur);
+})();
+
+sizeCanvas(); tick(0);
+
+/* جای‌گذاریِ فلش دقیقاً روی مرکزِ دکمه‌ی «تحلیل DAI» */
+function placeHint(){
+  const h = $('#daiHint'), tab = $('.tab[data-sec="dai"]'), wrap = $('.tabs-wrap');
+  if(!h || !tab || !wrap) return;
+  const prev = h.style.left;
+  h.style.left = '0px';
+  const wr = wrap.getBoundingClientRect(), tr = tab.getBoundingClientRect();
+  const svg = h.querySelector('svg');
+  const hr = h.getBoundingClientRect(), sr = svg.getBoundingClientRect();
+  const tipOffset = (sr.left - hr.left) + sr.width * (10/60);   /* نوکِ پیکان در x=10 از viewBoxِ ۶۰ */
+  const center = (tr.left + tr.right) / 2 - wr.left;
+  const maxL = Math.max(0, wr.width - hr.width);
+  h.style.left = Math.round(Math.max(0, Math.min(center - tipOffset, maxL))) + 'px';
+  if(prev === '') { /* اولین اجرا */ }
+}
+placeHint();
+/* بازتنظیم در صورتِ تغییرِ اندازه (بارگیریِ فونت، چرخشِ صفحه و…) */
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(placeHint);
+try{
+  if(window.ResizeObserver){
+    const ro = new ResizeObserver(()=> placeHint());
+    ro.observe($('.tabs-wrap'));
+    ro.observe($('.tab[data-sec="dai"]'));
+  }
+}catch(e){}
+setTimeout(placeHint, 500);
+
+/* حاشیه‌ی پایینِ صفحه برابر با ارتفاعِ واقعیِ پلیر */
+function syncPad(){
+  const h = document.querySelector('.player').offsetHeight;
+  document.documentElement.style.setProperty('--plh', (h + 14) + 'px');
+}
+syncPad();
+window.addEventListener('resize', ()=>{ sizeCanvas(); syncPad(); placeHint(); });
+window.addEventListener('load', ()=>{ syncPad(); placeHint(); });
+</script>
+</body>
+</html>
