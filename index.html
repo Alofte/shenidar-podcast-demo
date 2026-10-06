@@ -112,6 +112,13 @@ h1.ep-t{font-size:clamp(23px,4.4vw,34px);font-weight:900;line-height:1.42;letter
 .notice{margin:8px 0 0;padding:9px 13px;border-radius:11px;font-size:12px;line-height:1.85;
   background:var(--amber-bg);border:1px solid rgba(180,83,9,.22);color:var(--amber);display:none}
 .notice.show{display:block}
+.notice code{background:rgba(180,83,9,.10);padding:1px 6px;border-radius:6px;font-size:11.5px;
+  direction:ltr;unicode-bidi:embed;display:inline-block;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.notice a.retry{color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.notice details.nfix{margin-top:6px}
+.notice details.nfix summary{cursor:pointer;font-weight:700;outline:none}
+.notice details.nfix>div{margin-top:5px}
 
 /* ---------- تب‌ها ---------- */
 .tabs-wrap{position:relative;display:inline-flex;max-width:100%;margin:40px 0 18px}
@@ -455,11 +462,75 @@ footer{margin-top:40px;padding:26px 0 34px;border-top:1px solid var(--line);colo
     </div>
 
     <div class="notice" id="notice"></div>
-    <audio id="audio" src="audio/E25-KhodahafezAfrica.mp3" preload="metadata"></audio>
+    <!-- منبعِ صوت: لینکِ مستقیم را در AUDIO_URL (بالای اسکریپت) قرار دهید؛
+         در غیر این صورت فایل در پوشه‌ی audio/ و کنارِ همین صفحه جست‌وجو می‌شود. -->
+    <audio id="audio" preload="metadata"></audio>
   </div>
 </section>
 
 <script>
+/* ============================================================
+   🔧 تنظیمِ منبعِ فایل صوتی — لینکِ هاست را اینجا بگذارید
+   ------------------------------------------------------------
+   گزینه‌ی ۱ (برای دپلوی): لینکِ مستقیمِ فایل را در AUDIO_URL بگذارید؛ مثال:
+       const AUDIO_URL = 'https://cdn.example.com/E25-KhodahafezAfrica.mp3';
+   گزینه‌ی ۲: فایل E25-KhodahafezAfrica.mp3 را در پوشه‌ی audio/ کنارِ همین
+       صفحه در ریپوزیتوری بگذارید (یا دقیقاً کنار خودِ همین فایل).
+       مسیرها به‌طور خودکار و پشتِ‌سرهم امتحان می‌شوند.
+   اگر هیچ مسیری در دسترس نباشد، پخش‌کننده به‌طور خودکار به حالتِ
+   شبیه‌سازی‌شده می‌رود و همگامیِ متن، فصل‌ها و نقاط DAI حفظ می‌شود.
+   ============================================================ */
+/* --- یادداشتِ انتشار روی GitHub Pages ---------------------------------
+   فایل mp3 را کنارِ همین فایل (یا در پوشه‌ی audio/ کنار آن) در همان شاخه‌ی
+   منتشرشده commit کنید. Pages از Git LFS پشتیبانی نمی‌کند؛ پس فایل باید
+   واقعاً در ریپو باشد (اشاره‌گرِ LFS باعث همین خطا می‌شود).
+   اگر باز هم پیدا نشد، مسیرِ خامِ ریپو (raw.githubusercontent.com) به‌طور
+   خودکار امتحان می‌شود.
+   -------------------------------------------------------------------- */
+const AUDIO_URL  = '';                       /* ← لینکِ مستقیمِ mp3 (اختیاری اما مطمئن) */
+const AUDIO_FILE = 'E25-KhodahafezAfrica.mp3';
+
+/* فهرستِ مسیرهای جایگزین، به ترتیبِ اولویت (موارد تکراری حذف می‌شود) */
+const AUDIO_SRCS = (function(){
+  const out = [];
+  const add = u => {
+    if(!u) return;
+    let abs = u;
+    try{ abs = new URL(u, location.href).href; }catch(e){}
+    if(out.indexOf(abs) < 0) out.push(abs);
+  };
+  add(AUDIO_URL);                 /* ۱) لینکِ هاست (اگر وارد شده باشد) */
+  add('audio/' + AUDIO_FILE);     /* ۲) پوشه‌ی audio کنارِ صفحه       */
+  add(AUDIO_FILE);                /* ۳) کنارِ خودِ صفحه               */
+  add('/audio/' + AUDIO_FILE);    /* ۴) از ریشه‌ی سایت                */
+  add('/' + AUDIO_FILE);
+  ghCandidates().forEach(add);    /* ۵) مسیرِ خامِ گیت‌هاب (در صورت انتشار روی GitHub Pages) */
+  return out;
+})();
+
+/* اگر صفحه روی GitHub Pages منتشر شده باشد، مسیرِ خامِ همان ریپو را هم امتحان می‌کنیم
+   (raw.githubusercontent.com فایل را با پشتیبانی از Range می‌دهد؛ برای جست‌وجو مناسب است).
+   یادآوری: GitHub Pages از Git LFS پشتیبانی نمی‌کند — فایل واقعی را commit کنید. */
+function ghCandidates(){
+  const out = [];
+  try{
+    const h = location.hostname;
+    if(!/\.github\.io$/i.test(h)) return out;
+    const user = h.replace(/\.github\.io$/i, '');
+    const seg  = location.pathname.split('/').filter(Boolean).slice(0, -1);  /* پوشه‌ی صفحه */
+    const variants = [];
+    if(seg.length) variants.push([user + '/' + seg[0], seg.slice(1)]);   /* سایتِ پروژه: /repo/... */
+    variants.push([user + '.github.io', seg]);                     /* سایتِ کاربر:  user.github.io */
+    ['HEAD','main','master'].forEach(ref=>{
+      variants.forEach(v=>{
+        if(!v[0]) return;
+        out.push('https://raw.githubusercontent.com/' + [v[0], ref].concat(v[1], AUDIO_FILE).join('/'));
+      });
+    });
+  }catch(e){}
+  return out;
+}
+
 /* ============================================================
    داده‌های اپیزود — خروجیِ API شنیدار
    (در استفاده‌ی واقعی این سه آرایه را با پاسخ API پر کنید)
@@ -936,19 +1007,58 @@ audio.addEventListener('loadedmetadata', ()=>{
   if(isFinite(audio.duration) && audio.duration > 1) state.dur = audio.duration;
   $('#dur').textContent = mmss(state.dur);
   $('#notice').classList.remove('show');
+  $('#notice').innerHTML = '';
   tick(0);
 });
 audio.addEventListener('timeupdate', ()=> tick(audio.currentTime));
 audio.addEventListener('play',  ()=>{ state.playing = true;  $('#playIco').innerHTML = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>'; });
 audio.addEventListener('pause', ()=>{ state.playing = false; $('#playIco').innerHTML = '<path d="M8 5v14l11-7z"/>'; });
 audio.addEventListener('ended', ()=>{ state.playing = false; $('#playIco').innerHTML = '<path d="M8 5v14l11-7z"/>'; });
-audio.addEventListener('error', ()=>{
+/* بارگیریِ پلکانی: مسیر بعدی فقط وقتی امتحان می‌شود که قبلی خطا داده باشد */
+let audioIdx = 0;
+function tryAudio(i){
+  if(i >= AUDIO_SRCS.length){ audioFailed(); return; }
+  audioIdx = i;
+  try{
+    audio.src = AUDIO_SRCS[i];
+    audio.load();
+  }catch(e){ tryAudio(i + 1); }
+}
+function shortPath(u){
+  try{ return new URL(u, location.href).pathname.split('/').slice(-2).join('/'); }
+  catch(e){ return String(u); }
+}
+function audioFailed(){
   state.ready = false;
+  state.dur = EP.duration;
+  $('#dur').textContent = mmss(state.dur);
+  const lst = AUDIO_SRCS.map(shortPath)
+    .map(x=> '<code>' + esc(x) + '</code>').join(' <span>یا</span> ');
   const n = $('#notice');
-  n.innerHTML = 'فایل صوتی در این مسیر پیدا نشد؛ پخش‌کننده در حالت <b>شبیه‌سازی‌شده</b> کار می‌کند تا همگامیِ متن، فصل‌ها و نقاط DAI را ببینید.';
+  n.innerHTML =
+    'فایل صوتی در دسترس نیست؛ پخش‌کننده در حالت <b>شبیه‌سازی‌شده</b> کار می‌کند تا همگامیِ متن، فصل‌ها و نقاط DAI را ببینید. '
+    + '<a href="#" class="retry" id="retryAudio">تلاشِ دوباره</a>'
+    + '<details class="nfix"><summary>جزئیات و رفعِ مشکل</summary>'
+    + '<div>مسیرهای بررسی‌شده: ' + lst + '</div>'
+    + '<div>فایل <code>' + esc(AUDIO_FILE) + '</code> را در پوشه‌ی <code>audio/</code> کنار همین صفحه در ریپوزیتوری بگذارید،'
+    + ' یا لینکِ مستقیمِ هاست را در <code>AUDIO_URL</code> در بالای همین فایل وارد کنید.</div>'
+    + '<div>اگر از Git LFS استفاده می‌کنید، باید فایلِ واقعی آپلود شود (نه اشاره‌گرِ LFS)؛'
+    + ' و اگر هاست شما محدودیتِ حجم دارد، فایل را در یک سرویسِ فایل‌هاستینگ بگذارید و لینکِ مستقیم را در <code>AUDIO_URL</code> وارد کنید.</div>'
+    + '</details>';
   n.classList.add('show');
-  state.dur = EP.duration; $('#dur').textContent = mmss(state.dur);
+}
+$('#notice').addEventListener('click', e=>{
+  if(e.target && e.target.id === 'retryAudio'){
+    e.preventDefault();
+    $('#notice').classList.remove('show');
+    tryAudio(0);
+  }
 });
+audio.addEventListener('error', ()=>{
+  if(state.ready) return;          /* خطای حینِ پخش: منبع را عوض نمی‌کنیم */
+  tryAudio(audioIdx + 1);          /* مسیرِ بعدی را امتحان کن            */
+});
+tryAudio(0);
 
 $('#play').addEventListener('click', toggle);
 $('#back10').addEventListener('click', ()=> seek(state.t - 10));
@@ -1048,5 +1158,5 @@ syncPad();
 window.addEventListener('resize', ()=>{ sizeCanvas(); syncPad(); placeHint(); });
 window.addEventListener('load', ()=>{ syncPad(); placeHint(); });
 </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a466e7aaf82f090f',t:'MTc5MTMxMzE4NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
